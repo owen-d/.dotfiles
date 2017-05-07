@@ -31,15 +31,7 @@ file.
 
 I haven't figured out org mode yet... so deal with this unformatted text!.
 
-This should require you use the alternative dot directory for spacemacs ( ~/.spacemacs -> ~/.spacemacs.d/init.el)
-
-Then, do 2 things:
-1) Add `owend-dotfile` to the configuration layers list.
-2) Add ``
-
-   Ok team I haven't learned org mode yet so deal with it in the meantime.
-
 1) clone the repo into $HOME
-2) add `dotspacemacs-configuration-layer-path '("~/.dotfiles/spacemacs-layers/")` to the variable instantiations before layers are loaded (typically right before the configuration layers clause)
+2) add `dotspacemacs-configuration-layer-path '("~/.dotfiles/spacemacs-layers/")` to the variable instantiations (setq-default clause) before layers are loaded (typically right before the configuration layers placement)
 3) add `owend-dotfile` to your configuration layers
 4) add the following to your dotspacemacs/user-config `(load-file "~/.dotfiles/spacemacs-layers/owend-dotfile/user-config-dropin.el")`
