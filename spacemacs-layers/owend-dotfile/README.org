@@ -1,0 +1,45 @@
+#+TITLE: owend-dotfile layer
+
+# The maximum height of the logo should be 200 pixels.
+[[img/owend-dotfile.png]]
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_4_gh:noexport:
+ - [[#description][Description]]
+ - [[#install][Install]]
+ - [[#key-bindings][Key bindings]]
+
+* Description
+This layer does wonderful things:
+  - thing01
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =owend-dotfile= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+
+| Key Binding | Description    |
+|-------------+----------------|
+| ~SPC x x x~ | Does thing01   |
+# Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
+# Examples:
+# [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
+# [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
+# If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
+
+I haven't figured out org mode yet... so deal with this unformatted text!.
+
+This should require you use the alternative dot directory for spacemacs ( ~/.spacemacs -> ~/.spacemacs.d/init.el)
+
+Then, do 2 things:
+1) Add `owend-dotfile` to the configuration layers list.
+2) Add ``
+
+   Ok team I haven't learned org mode yet so deal with it in the meantime.
+
+1) clone the repo into $HOME
+2) add `dotspacemacs-configuration-layer-path '("~/.dotfiles/spacemacs-layers/")` to the variable instantiations before layers are loaded (typically right before the configuration layers clause)
+3) add `owend-dotfile` to your configuration layers
+4) add the following to your dotspacemacs/user-config `(load-file "~/.dotfiles/spacemacs-layers/owend-dotfile/user-config-dropin.el")`
