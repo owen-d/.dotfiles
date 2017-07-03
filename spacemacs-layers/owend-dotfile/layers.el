@@ -6,5 +6,6 @@
                                       javascript
                                       themes-megapack
                                       rust
+                                      elm
                                       (go :variables go-tab-width 4)
                                       ))
