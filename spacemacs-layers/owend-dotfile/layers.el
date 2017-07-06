@@ -6,6 +6,8 @@
                                       javascript
                                       themes-megapack
                                       rust
-                                      elm
-                                      (go :variables go-tab-width 4)
+                                      (elm :variables
+                                           elm-tags-exclude-elm-stuff nil)
+                                      (go :variables
+                                          go-tab-width 4)
                                       ))
