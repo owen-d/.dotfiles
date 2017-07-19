@@ -7,7 +7,9 @@
                                       themes-megapack
                                       rust
                                       (elm :variables
-                                           elm-tags-exclude-elm-stuff nil)
+                                           elm-tags-exclude-elm-stuff nil
+                                           elm-reactor-address "0.0.0.0"
+                                           elm-sort-imports-on-save t)
                                       (go :variables
                                           go-tab-width 4)
                                       ))
