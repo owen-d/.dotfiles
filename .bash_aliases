@@ -9,4 +9,5 @@ if [[ $(uname -s) == Linux ]]
 fi
 
 # rust musl builder, see https://github.com/emk/rust-musl-builder
-alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
+alias rust-musl-nightly='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder:nightly'
+alias rust-musl-stable='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
