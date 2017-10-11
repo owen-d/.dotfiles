@@ -2,7 +2,8 @@
 (configuration-layer/declare-layers '(
                                       git
                                       markdown
-                                      clojure
+                                      (clojure :variables
+                                               clojure-enable-fancify-symbols t)
                                       javascript
                                       themes-megapack
                                       rust
