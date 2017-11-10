@@ -5,8 +5,9 @@
                                       (clojure :variables
                                                clojure-enable-fancify-symbols t)
                                       javascript
-                                      themes-megapack
+                                      ;; themes-megapack
                                       rust
+                                      (markdown :variables markdown-live-preview-engine 'vmd)
                                       (elm :variables
                                            elm-tags-exclude-elm-stuff nil
                                            elm-reactor-address "0.0.0.0"
