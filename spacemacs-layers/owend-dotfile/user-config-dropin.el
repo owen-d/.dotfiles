@@ -5,3 +5,6 @@
 (add-to-list 'load-path "~/lib/emacs/ludwig-mode/")
 (autoload 'ludwig-mode "ludwig-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.lw\\'" . ludwig-mode))
+
+;; org mode posthook
+(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
