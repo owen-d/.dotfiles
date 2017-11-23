@@ -16,4 +16,5 @@
                                           go-tab-width 4)
                                       org
                                       auto-completion
+                                      (haskell :variables haskell-enable-hindent-style "johan-tibell")
                                       ))
