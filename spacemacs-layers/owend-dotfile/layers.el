@@ -15,4 +15,5 @@
                                       (go :variables
                                           go-tab-width 4)
                                       org
+                                      auto-completion
                                       ))
