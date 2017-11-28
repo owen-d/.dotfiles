@@ -22,3 +22,7 @@
 (when (eq system-type 'darwin)
   (setq interprogram-cut-function 'copy-to-osx)
   (setq interprogram-paste-function 'paste-from-osx))
+
+;; append custom themes
+(setq dotspacemacs-themes (append dotspacemacs-themes '(wombat tsdh-dark misterioso whiteboard)))
+
