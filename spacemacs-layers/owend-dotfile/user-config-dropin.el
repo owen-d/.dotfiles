@@ -9,9 +9,11 @@
 ;; org mode posthook
 (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 
-;; osx system copy/paste integration from terminal
-(defun paste-from-osx ()
-  (shell-command-to-string "pbpaste"))
+;; osx system copy/paste integration from terminal -- paste currently breaks convenience features
+;; like yy-p for pasting on a new inserted line below,
+;; so we just enable copying kill ring into system clipboard
+;; (defun paste-from-osx ()
+;;   (shell-command-to-string "pbpaste"))
 
 (defun copy-to-osx (text &optional push)
     (let ((process-connection-type nil))
@@ -20,8 +22,8 @@
             (process-send-eof proc))))
 
 (when (eq system-type 'darwin)
-  (setq interprogram-cut-function 'copy-to-osx)
-  (setq interprogram-paste-function 'paste-from-osx))
+  ;; (setq interprogram-paste-function 'paste-from-osx)
+  (setq interprogram-cut-function 'copy-to-osx))
 
 ;; append custom themes
 (setq dotspacemacs-themes (append dotspacemacs-themes '(wombat tsdh-dark misterioso whiteboard)))
