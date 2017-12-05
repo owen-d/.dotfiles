@@ -17,4 +17,6 @@
                                       org
                                       auto-completion
                                       (haskell :variables haskell-enable-hindent-style "johan-tibell")
+                                      (python :variables python-indent 4
+                                              python-indent-offset 4)
                                       ))
