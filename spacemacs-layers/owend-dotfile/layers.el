@@ -16,7 +16,10 @@
                                           go-tab-width 4)
                                       org
                                       auto-completion
-                                      (haskell :variables haskell-enable-hindent-style "johan-tibell")
+                                      (haskell :variables
+                                               haskell-enable-hindent-style "johan-tibell"
+                                               haskell-completion-backend 'intero
+                                               intero-package-version "0.1.24")
                                       (python :variables python-indent 4
                                               python-indent-offset 4)
                                       docker
