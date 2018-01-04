@@ -60,6 +60,7 @@
     xclip
     streamlink
     alacritty
+    lsof
   ];
 
   systemd.user.services."xcape" = {
@@ -110,7 +111,7 @@
   };
 
   services.xserver.desktopManager.plasma5.enable = true;
-  
+
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
   services.xserver.libinput.naturalScrolling = true;
@@ -121,7 +122,7 @@
     isNormalUser = true;
     uid = 1000;
   };
-  
+
   security.sudo.configFile = ''
   # Don't edit this file. Set the NixOS options ‘security.sudo.configFile’
   # or ‘security.sudo.extraConfig’ instead.
@@ -140,6 +141,9 @@
   Defaults:root,%wheel env_keep+=TERMINFO
 
   '';
+
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
