@@ -23,4 +23,5 @@
                                       (python :variables python-indent 4
                                               python-indent-offset 4)
                                       docker
+                                      nixos
                                       ))

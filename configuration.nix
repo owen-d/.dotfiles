@@ -14,9 +14,14 @@
     allowUnfree = true;
   };
 
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
+
+  boot.loader.systemd-boot.enable = true;
+  # Whether or not the installation process should modify EFI boot variables
   boot.loader.efi.canTouchEfiVariables = true;
+  # If you rely on a dirty /tmp dir you are doing it wrong. Your laptop will
+  # never be cattle.
+  boot.cleanTmpDir = true;
+  # This gets your audio output and input (mic) working
   boot.initrd.luks.devices = [
     {
       name = "root";
@@ -26,13 +31,6 @@
     }
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "nodev";
-    efiSupport = true;
-    gfxmodeEfi = "1024x768";
-  };
 
   #networking.hostName = "nix"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -45,7 +43,7 @@
   # };
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/New_York";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
