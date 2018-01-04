@@ -60,6 +60,8 @@
     zip unzip
     xcape
     xclip
+    streamlink
+    alacritty
   ];
 
   systemd.user.services."xcape" = {
