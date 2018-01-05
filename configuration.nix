@@ -35,13 +35,6 @@
   #networking.hostName = "nix"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
-
   # Set your time zone.
   time.timeZone = "America/New_York";
 
@@ -85,6 +78,7 @@
     serviceConfig.Type = "forking";
     serviceConfig.Restart = "always";
     serviceConfig.RestartSec = 2;
+    serviceConfig.ExecStartPre = "${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:nocaps -option caps:ctrl_modifier";
     serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape -e Control_L=Escape";
   };
 
@@ -118,9 +112,6 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.xkbVariant = "mac";
-  services.xserver.xkbOptions = "ctrl:nocaps, caps:ctrl_modifier";
-  #services.xserver.multitouch.enable = true;
-  #services.xserver.multitouch.invertScroll = true;
 
   services.xserver.displayManager.auto = {
     enable = true;
