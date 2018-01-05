@@ -12,18 +12,22 @@
 ;; osx system copy/paste integration from terminal -- paste currently breaks convenience features
 ;; like yy-p for pasting on a new inserted line below,
 ;; so we just enable copying kill ring into system clipboard
-;; (defun paste-from-osx ()
-;;   (shell-command-to-string "pbpaste"))
 
 (defun copy-to-osx (text &optional push)
     (let ((process-connection-type nil))
-        (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+        (let ((proc (start-process-shell-command "pbcopy" "*Messages*" "pbcopy")))
             (process-send-string proc text)
             (process-send-eof proc))))
 
-(when (eq system-type 'darwin)
-  ;; (setq interprogram-paste-function 'paste-from-osx)
-  (setq interprogram-cut-function 'copy-to-osx))
+;; ;; old osx specific variant
+;; (when (eq system-type 'darwin)
+;;   (setq interprogram-cut-function 'copy-to-osx))
+
+;; new variant which works with bash aliases (pbcopy is not exec'able when it's aliased via xclip :D)
+;; It requires interactive login shells, thus the command-switch addition
+(setq interprogram-cut-function 'copy-to-osx)
+(setq shell-file-name "bash")
+(setq shell-command-switch "-ilc")
 
 ;; append custom themes
 (setq dotspacemacs-themes (append dotspacemacs-themes '(wombat tsdh-dark misterioso whiteboard)))
