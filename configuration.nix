@@ -57,6 +57,10 @@
     lsof
     powertop
     stack
+    gnumake
+    gcc
+    binutils
+    clang
   ];
 
   systemd.services.powertop = {
