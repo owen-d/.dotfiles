@@ -38,6 +38,7 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -55,6 +56,7 @@
     alacritty
     lsof
     powertop
+    stack
   ];
 
   systemd.services.powertop = {
@@ -97,6 +99,8 @@
   services.openssh.enable = true;
   services.tlp.enable = true;
   services.thermald.enable = true;
+  # unclutter to hide mouse while not in use
+  services.unclutter.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -123,6 +127,7 @@
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
   services.xserver.libinput.naturalScrolling = true;
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.owen = {
