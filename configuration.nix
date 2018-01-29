@@ -45,7 +45,7 @@
     vim
     emacs
     git
-    chromium
+    google-chrome
     vlc
     curl wget
     tmux
