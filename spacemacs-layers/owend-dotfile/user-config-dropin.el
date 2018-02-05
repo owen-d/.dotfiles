@@ -32,3 +32,6 @@
 ;; append custom themes
 (setq dotspacemacs-themes (append dotspacemacs-themes '(wombat tsdh-dark misterioso whiteboard)))
 
+;; use ripgrep
+(evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
+(setq helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
