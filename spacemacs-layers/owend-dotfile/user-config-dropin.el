@@ -34,4 +34,4 @@
 
 ;; use ripgrep
 (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
-(setq helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
+(setq helm-ag-base-command "rg --vimgrep --no-heading --smart-case --hidden")
