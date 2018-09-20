@@ -11,3 +11,15 @@ fi
 # rust musl builder, see https://github.com/emk/rust-musl-builder
 alias rust-musl-nightly='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder:nightly'
 alias rust-musl-stable='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
+
+# twitch livestreamer auth -- public
+alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6'
+
+# fat fingers
+gti() {
+  git $@
+}
+
+random_bytes () {
+  head -c "${1:-16}" < /dev/urandom | xxd -p
+}
