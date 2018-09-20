@@ -12,12 +12,14 @@
                                            elm-tags-exclude-elm-stuff nil
                                            elm-reactor-address "0.0.0.0"
                                            elm-sort-imports-on-save t)
+                                      ;; make sure to install dif version of gocode for post 1.10 go https://github.com/mdempsky/gocode
                                       (go :variables
                                           go-tab-width 4)
                                       org
                                       auto-completion
                                       (haskell :variables
                                                haskell-enable-hindent-style "johan-tibell"
+                                               haskell-stylish-on-save t
                                                haskell-completion-backend 'intero
                                                intero-package-version "0.1.24")
                                       (python :variables python-indent 4
