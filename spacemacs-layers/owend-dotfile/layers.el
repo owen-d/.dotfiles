@@ -16,6 +16,7 @@
                                       (go :variables
                                           go-tab-width 4)
                                       org
+                                      typescript
                                       auto-completion
                                       (haskell :variables
                                                haskell-enable-hindent-style "johan-tibell"
