@@ -21,8 +21,7 @@
                                       (haskell :variables
                                                haskell-enable-hindent-style "johan-tibell"
                                                haskell-stylish-on-save t
-                                               haskell-completion-backend 'intero
-                                               intero-package-version "0.1.24")
+                                               haskell-completion-backend 'intero)
                                       (python :variables python-indent 4
                                               python-indent-offset 4)
                                       docker
