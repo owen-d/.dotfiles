@@ -23,3 +23,7 @@ gti() {
 random_bytes () {
   head -c "${1:-16}" < /dev/urandom | xxd -p
 }
+
+repeat () {
+  while :; do clear && $1 && sleep $2; done
+}

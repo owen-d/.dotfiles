@@ -1,7 +1,9 @@
 ;;;; List of personal layers
 (configuration-layer/declare-layers '(
+                                      html
+                                      csv
+                                      yaml
                                       git
-                                      markdown
                                       (clojure :variables
                                                clojure-enable-fancify-symbols t)
                                       javascript
@@ -12,17 +14,22 @@
                                            elm-tags-exclude-elm-stuff nil
                                            elm-reactor-address "0.0.0.0"
                                            elm-sort-imports-on-save t)
-                                      ;; make sure to install dif version of gocode for post 1.10 go https://github.com/mdempsky/gocode
+                                      ;; try setting autobuild (works well with dep at the moment)
+                                      ;; gocode set autobuild true
                                       (go :variables
                                           go-tab-width 4)
                                       org
-                                      typescript
+                                      (typescript :variables
+                                                  typescript-fmt-on-save t)
                                       auto-completion
                                       (haskell :variables
                                                haskell-enable-hindent-style "johan-tibell"
                                                haskell-stylish-on-save t
                                                haskell-completion-backend 'intero)
+                                      ;; pip install autoflake yapf isort
                                       (python :variables python-indent 4
+                                              python-enable-yapf-format-on-save t
+                                              python-sort-imports-on-save t
                                               python-indent-offset 4)
                                       docker
                                       nixos
