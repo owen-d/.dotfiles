@@ -17,7 +17,8 @@
                                       ;; try setting autobuild (works well with dep at the moment)
                                       ;; gocode set autobuild true
                                       (go :variables
-                                          go-tab-width 4)
+                                          go-tab-width 4
+                                          go-format-before-save t)
                                       org
                                       (typescript :variables
                                                   typescript-fmt-on-save t)

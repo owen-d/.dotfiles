@@ -25,9 +25,17 @@ random_bytes () {
 }
 
 repeat () {
-  while :; do clear && $1 && sleep $2; done
+  while :;
+  do
+      local output="$($1 2>&1)"
+      clear && echo "${output}" && sleep $2
+  done
 }
 
 docker-rmi-none () {
   docker images | grep non | awk '{print $3}' | xargs -n 1 docker rmi
+}
+
+mem() {
+    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
 }
