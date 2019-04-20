@@ -21,6 +21,7 @@
                                           go-format-before-save t)
                                       org
                                       (typescript :variables
+                                                  typescript-indent-level 2
                                                   typescript-fmt-on-save t)
                                       auto-completion
                                       (haskell :variables
