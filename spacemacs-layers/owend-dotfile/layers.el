@@ -25,6 +25,8 @@
                                                   typescript-fmt-on-save t)
                                       auto-completion
                                       (haskell :variables
+                                               intero-package-version "0.1.40"
+                                               haskell-enable-hindent t
                                                haskell-enable-hindent-style "johan-tibell"
                                                haskell-stylish-on-save t
                                                haskell-completion-backend 'intero)
