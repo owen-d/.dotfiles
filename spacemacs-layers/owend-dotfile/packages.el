@@ -28,9 +28,11 @@
 ;;   `owend-dotfile/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
+(defun owend-dotfile/init-zerodark-theme ()
+  (use-package zerodark-theme))
 
 (defconst owend-dotfile-packages
-  '()
+  '(zerodark-theme)
   "The list of Lisp packages required by the owend-dotfile layer.
 
 Each entry is either:

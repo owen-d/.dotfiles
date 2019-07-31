@@ -22,7 +22,8 @@
 (setq shell-command-switch "-ilc")
 
 ;; append custom themes
-(setq dotspacemacs-themes (append dotspacemacs-themes '(wombat tsdh-dark misterioso whiteboard)))
+(setq dotspacemacs-themes (cons 'zerodark
+                                (append dotspacemacs-themes '(wombat tsdh-dark misterioso whiteboard))))
 
 ;; use ripgrep
 (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
