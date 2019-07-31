@@ -1,6 +1,4 @@
 (spacemacs/toggle-smartparens-globally-on)
-(setq-default js2-basic-offset 2)
-(setq-default js-indent-level 2)
 
 ;; org mode posthook
 (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
@@ -28,3 +26,12 @@
 ;; use ripgrep
 (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 (setq helm-ag-base-command "rg --vimgrep --no-heading --smart-case --hidden")
+
+(setq dotspacemacs-additional-packages (cons 'nodejs-repl dotspacemacs-additional-packages))
+(spacemacs/set-leader-keys-for-major-mode 'js2-mode
+  "ne" 'nodejs-repl-send-last-expression
+  "nb" 'nodejs-repl-send-buffer
+  "ns" 'nodejs-repl-switch-to-repl
+  "nr" 'nodejs-repl-send-region
+  "nf" 'nodejs-repl-load-file
+)

@@ -32,7 +32,9 @@
   (use-package zerodark-theme))
 
 (defconst owend-dotfile-packages
-  '(zerodark-theme)
+  '(
+    zerodark-theme
+    )
   "The list of Lisp packages required by the owend-dotfile layer.
 
 Each entry is either:
@@ -62,3 +64,4 @@ Each entry is either:
 
 
 ;;; packages.el ends here
+

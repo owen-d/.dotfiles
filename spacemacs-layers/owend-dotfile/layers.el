@@ -6,7 +6,9 @@
                                       git
                                       (clojure :variables
                                                clojure-enable-fancify-symbols t)
-                                      javascript
+                                      (javascript :variables
+                                                  js2-basic-offset 2
+                                                  js-indent-level 2)
                                       ;; themes-megapack
                                       rust
                                       (markdown :variables markdown-live-preview-engine 'vmd)
