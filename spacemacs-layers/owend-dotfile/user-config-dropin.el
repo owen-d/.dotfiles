@@ -17,7 +17,7 @@
 ;; It requires interactive login shells, thus the command-switch addition
 (setq interprogram-cut-function 'copy-to-osx)
 (setq shell-file-name "bash")
-(setq shell-command-switch "-ilc")
+(setenv "BASH_ENV" "~/.bashrc")
 
 ;; append custom themes
 (setq dotspacemacs-themes (cons 'zerodark
