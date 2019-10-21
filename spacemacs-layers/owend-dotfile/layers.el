@@ -19,8 +19,8 @@
                                       ;; try setting autobuild (works well with dep at the moment)
                                       ;; gocode set autobuild true
                                       (go :variables
-                                          go-tab-width 4
-                                          go-format-before-save t)
+                                          go-format-before-save t
+                                          gofmt-command "goimports")
                                       org
                                       (typescript :variables
                                                   typescript-indent-level 2

@@ -14,10 +14,10 @@
             (process-send-eof proc))))
 
 ;; new variant which works with bash aliases (pbcopy is not exec'able when it's aliased via xclip :D)
-;; It requires interactive login shells, thus the command-switch addition
+;; load bashrc (which in turn expands aliases)
 (setq interprogram-cut-function 'copy-to-osx)
 (setq shell-file-name "bash")
-(setenv "BASH_ENV" "~/.bashrc")
+(setenv "BASH_ENV" "~/.bashenv_dynamic")
 
 ;; append custom themes
 (setq dotspacemacs-themes (cons 'zerodark
