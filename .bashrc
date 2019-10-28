@@ -10,3 +10,5 @@ export PATH="${PATH}:${GOPATH}/bin"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 source $HOME/.cargo/env
+
+export GPG_TTY=$(tty)
