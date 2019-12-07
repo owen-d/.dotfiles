@@ -34,4 +34,4 @@
   "ns" 'nodejs-repl-switch-to-repl
   "nr" 'nodejs-repl-send-region
   "nf" 'nodejs-repl-load-file
-)
+  )

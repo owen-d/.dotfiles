@@ -16,11 +16,11 @@
                                            elm-tags-exclude-elm-stuff nil
                                            elm-reactor-address "0.0.0.0"
                                            elm-sort-imports-on-save t)
-                                      ;; try setting autobuild (works well with dep at the moment)
-                                      ;; gocode set autobuild true
                                       (go :variables
                                           go-format-before-save t
-                                          gofmt-command "goimports")
+                                          gofmt-command "goimports"
+                                          godoc-at-point-function 'godoc-gogetdoc
+                                          go-use-golangci-lint t)
                                       org
                                       (typescript :variables
                                                   typescript-indent-level 2
@@ -39,4 +39,11 @@
                                               python-indent-offset 4)
                                       docker
                                       nixos
+                                      jsonnet
+                                      (lsp :variables
+                                           lsp-prefer-flymake nil
+                                           lsp-eldoc-render-all t
+                                           ;; ;; should be auto enabled
+                                           ;; lsp-ui-flycheck-enable t
+                                           lsp-ui-doc-enable nil)
                                       ))
