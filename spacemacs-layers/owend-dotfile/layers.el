@@ -46,4 +46,5 @@
                                            ;; ;; should be auto enabled
                                            ;; lsp-ui-flycheck-enable t
                                            lsp-ui-doc-enable nil)
+                                      terraform
                                       ))
