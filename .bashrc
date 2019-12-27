@@ -8,7 +8,6 @@ export GIT_SSH_COMMAND="ssh -i ~/.ssh/github_rsa"
 export GOPATH=~/go
 export PATH="${PATH}:${GOPATH}/bin"
 
-export PATH="$HOME/.cargo/bin:$PATH"
 source $HOME/.cargo/env
 
 export GPG_TTY=$(tty)
