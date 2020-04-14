@@ -27,8 +27,9 @@ random_bytes () {
 repeat () {
   while :;
   do
-      local output="$($1 2>&1)"
-      clear && echo "${output}" && sleep $2
+      local t="$1"
+      local output="$(${@:2} 2>&1)"
+      clear && echo "${output}" && sleep $t
   done
 }
 
