@@ -44,3 +44,7 @@ mem() {
 gwd() {
     cd ${GOPATH}/src/github.com/owen-d
 }
+
+jsonnet-lint() {
+    git diff --name-only | xargs -n 1 jsonnetfmt -i
+}
