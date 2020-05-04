@@ -46,5 +46,5 @@ gwd() {
 }
 
 jsonnet-lint() {
-    git diff --name-only | xargs -n 1 jsonnetfmt -i
+    git diff --name-only | grep -E '(jsonnet|libsonnet)' | xargs -n 1 jsonnetfmt -i
 }
