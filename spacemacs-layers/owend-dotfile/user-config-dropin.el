@@ -26,12 +26,3 @@
 ;; use ripgrep
 (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 (setq helm-ag-base-command "rg --vimgrep --no-heading --smart-case --hidden -g !vendor")
-
-(setq dotspacemacs-additional-packages (cons 'nodejs-repl dotspacemacs-additional-packages))
-(spacemacs/set-leader-keys-for-major-mode 'js2-mode
-  "ne" 'nodejs-repl-send-last-expression
-  "nb" 'nodejs-repl-send-buffer
-  "ns" 'nodejs-repl-switch-to-repl
-  "nr" 'nodejs-repl-send-region
-  "nf" 'nodejs-repl-load-file
-  )
