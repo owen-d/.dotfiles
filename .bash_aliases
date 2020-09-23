@@ -15,6 +15,8 @@ alias rust-musl-stable='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rus
 # twitch livestreamer auth -- public
 alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6'
 
+alias kc='kubectl'
+
 # fat fingers
 gti() {
   git $@
