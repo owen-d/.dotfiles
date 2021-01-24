@@ -26,3 +26,19 @@
 ;; use ripgrep
 (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 (setq helm-ag-base-command "rg --vimgrep --no-heading --smart-case --hidden -g !vendor")
+
+(spacemacs|use-package-add-hook dap-mode
+  :post-config
+  (dap-register-debug-template
+   "loki-local"
+   (list :type "go"
+         :request "launch"
+         :name "loki-local"
+         :mode "debug"
+         :program nil
+         :buildFlags "-gcflags '-N -l'"
+         :args "--config.file /Users/owendiehl/grafana/loki/cmd/loki/loki-local-config.yaml"
+         :env nil
+         :envFile nil))
+  )
+
