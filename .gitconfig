@@ -9,8 +9,8 @@
         hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 [init]
         templatedir = ~/.git-templates
-[commit]
-        gpgsign = true
+# [commit]
+#         gpgsign = true
 [url "git@github.com:"]
         insteadOf = https://github.com/
 
