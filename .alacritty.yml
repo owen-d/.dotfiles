@@ -52,7 +52,7 @@ schemes:
 # pastel
 colors: *pastel
 
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
 
