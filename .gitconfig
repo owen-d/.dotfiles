@@ -1,0 +1,16 @@
+# This is Git's per-user configuration file.
+[user]
+        name = Owen Diehl
+        email = ow.diehl@gmail.com
+# Please adapt and uncomment the following lines:
+#       name = Owen Diehl
+#       email = ow.diehl@gmail.com
+[alias]
+        hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+[init]
+        templatedir = ~/.git-templates
+[commit]
+        gpgsign = true
+[url "git@github.com:"]
+        insteadOf = https://github.com/
+

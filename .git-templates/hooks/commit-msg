@@ -1,0 +1,4 @@
+#!/bin/sh
+
+grep '^Signed-off-by: ' "$1" || \
+echo "Signed-off-by: $(git config --get user.name) <$(git config --get user.email)>" >>"$1"
