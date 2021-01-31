@@ -128,17 +128,27 @@ in
     discord
   ];
 
-  environment.etc = {
-    "per-user/alacritty/alacritty.yml".text = lib.generators.toYAML {} (import "${dotuser}/alacritty.nix");
-  };
+  environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
+      "per-user/alacritty/alacritty.yml".text = lib.generators.toYAML {} (import "${dotuser}/alacritty.nix");
+    } [
+    (import "${dotuser}/gitconfig.nix").files
+  ];
 
   system.userActivationScripts = {
-    linking = {
-      text = ''
+    linking = lib.strings.concatStrings (lib.strings.intersperse "\n" [
+      ''
         ln -sfn /etc/per-user/alacritty/alacritty.yml ~/.alacritty.yml
-      '';
-      deps = [];
-    };
+        ln -sfn /etc/per-user/.gitconfig ~/.gitconfig
+      ''
+      (import "${dotuser}/gitconfig.nix").linking.text
+    ]);
+    # linking = {
+    #   text = ''
+    #     ln -sfn /etc/per-user/alacritty/alacritty.yml ~/.alacritty.yml
+    #     ln -sfn /etc/per-user/.gitconfig ~/.gitconfig
+    #   '';
+    #   deps = [];
+    # };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
