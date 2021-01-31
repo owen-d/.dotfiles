@@ -2,8 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  dots =  "/home/owen/.dotfiles";
+  nixdots = "${dots}/nix-config";
+  dotuser = "${nixdots}/home";
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -64,7 +69,6 @@
     serviceConfig.ExecStart = "${pkgs.xlibs.xset}/bin/xset r rate 185 50";
   };
 
-
   systemd.user.services."xcape" = {
     enable = true;
     description = "xcape to use CTRL as ESC when pressed alone";
@@ -123,6 +127,19 @@
     steam
     discord
   ];
+
+  environment.etc = {
+    "per-user/alacritty/alacritty.yml".text = lib.generators.toYAML {} (import "${dotuser}/alacritty.nix");
+  };
+
+  system.userActivationScripts = {
+    linking = {
+      text = ''
+        ln -sfn /etc/per-user/alacritty/alacritty.yml ~/.alacritty.yml
+      '';
+      deps = [];
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
