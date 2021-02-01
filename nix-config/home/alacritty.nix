@@ -57,7 +57,7 @@ let
       blue ="0x1bcbfc";
       magenta ="0xe5adfd";
       cyan ="0x99d6fc";
-      white ="0xfeffff";
+      white ="0xfefff";
     };
 
     # Dim colors
@@ -100,7 +100,7 @@ in
       # M-x
       key = "X";
       mods = "Alt";
-      chars = "\x1bX";
+      chars = "\x1bx";
     }
   ];
 }
