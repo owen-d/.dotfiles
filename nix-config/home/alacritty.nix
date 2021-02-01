@@ -98,7 +98,7 @@ in
   key_bindings = [
     {
       # M-x
-      key = "x";
+      key = "X";
       mods = "Alt";
       chars = "\x1bx";
     }

@@ -47,10 +47,36 @@ in
   # };
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" ];
+    windowManager.xmonad = {
+      enableContribAndExtras = true;
+      extraPackages = hpkgs: with hpkgs; [ dbus monad-logger xmonad-contrib ];
+      enable = true;
+    };
+    displayManager = {
+      # ssdm.enable = true;
+      # plasma5.enable = true;
+      lightdm = {
+        enable = true;
+        # background = ./config/wallpapers/horizon.jpg;
+        greeters.gtk = {
+          enable = true;
+          iconTheme = {
+            name = "Papirus";
+            package = pkgs.papirus-icon-theme;
+          };
+          # theme = {
+          #   name = "fortuneteller2k_phocus";
+          #   package = pkgs.phocus;
+          # };
+        };
+      };
+      defaultSession = "none+xmonad";
+    };
+  };
+
 
   # Should be removable in the future
   # https://github.com/NixOS/nixpkgs/pull/86480/files
@@ -126,6 +152,7 @@ in
     slack
     steam
     discord
+    xmonad-log
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
@@ -142,7 +169,6 @@ in
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
-    deps = [];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
