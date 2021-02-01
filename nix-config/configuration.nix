@@ -142,13 +142,7 @@ in
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
-    # linking = {
-    #   text = ''
-    #     ln -sfn /etc/per-user/alacritty/alacritty.yml ~/.alacritty.yml
-    #     ln -sfn /etc/per-user/.gitconfig ~/.gitconfig
-    #   '';
-    #   deps = [];
-    # };
+    deps = [];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
