@@ -57,7 +57,7 @@ let
       blue ="0x1bcbfc";
       magenta ="0xe5adfd";
       cyan ="0x99d6fc";
-      white ="0xfefff";
+      white ="0xfeffff";
     };
 
     # Dim colors
