@@ -83,19 +83,6 @@ in
   # https://github.com/NixOS/nixpkgs/pull/86480/files
   hardware.opengl.driSupport32Bit = true;
 
-  systemd.user.services."x-user-init" = {
-    # Note: this is b/c I couldn't get the following working:
-    # services.xserver.autoRepeatDelay = 185;
-    # services.xserver.autoRepeatInterval = 50;
-    enable = true;
-    description = "hacking around x configs at startup (not working via exposed nixos xserver options)";
-    wantedBy = [ "default.target" ];
-    serviceConfig.Type = "forking";
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.xlibs.xset}/bin/xset r rate 185 50";
-  };
-
   systemd.user.services."xcape" = {
     enable = true;
     description = "xcape to use CTRL as ESC when pressed alone";
@@ -172,6 +159,13 @@ in
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
+    peripherals = ''
+      # monitor positions
+      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0;
+      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0;
+      # keyboard repeat
+      ${pkgs.xlibs.xset}/bin/xset r rate 185 50
+    '';
   };
 
   # Some programs need SUID wrappers, can be configured further or are
