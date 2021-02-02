@@ -143,10 +143,19 @@ in
     xmonad-log
     dmenu # search util
     xwallpaper
+    jq
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
-      "per-user/alacritty/alacritty.yml".text = lib.generators.toYAML {} (import "${dotuser}/alacritty.nix");
+      "per-user/alacritty/alacritty.yml".text =
+        # This is some hacky stuff :/
+        # Basically the "\x1bx" is the (M-x) keyset but it gets ripped out
+        # via the yaml function, which actually uses JSON under the hood...
+        # So, we re-inject it in post-processing and pray theres not another
+        # x1bx in the file :D
+        lib.strings.escape
+          ["x1bx"]
+          (lib.generators.toYAML {} (import "${dotuser}/alacritty.nix"));
     } [
     (import "${dotuser}/gitconfig.nix").files
   ];
