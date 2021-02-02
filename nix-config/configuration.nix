@@ -94,6 +94,18 @@ in
     serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape -e Control_L=Escape";
   };
 
+  # random svc for init stuff I need
+  systemd.user.services."x-user-init" = {
+    description = "random x configs";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    script = ''
+      ${pkgs.xlibs.xset}/bin/xset r rate 185 50
+      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0
+      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0
+    '';
+  };
+
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
@@ -169,13 +181,6 @@ in
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
-    peripherals = ''
-      # monitor positions
-      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0;
-      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0;
-      # keyboard repeat
-      ${pkgs.xlibs.xset}/bin/xset r rate 185 50
-    '';
   };
 
   # Some programs need SUID wrappers, can be configured further or are
