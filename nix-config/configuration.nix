@@ -5,6 +5,7 @@
 { config, pkgs, lib, ... }:
 
 let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   dots =  "/home/owen/.dotfiles";
   nixdots = "${dots}/nix-config";
   dotuser = "${nixdots}/home";
@@ -61,7 +62,7 @@ in
       # plasma5.enable = true;
       lightdm = {
         enable = true;
-        # background = ./config/wallpapers/horizon.jpg;
+        background = "${dotuser}/home/media/img/akira0.jpg";
         greeters.gtk = {
           enable = true;
           iconTheme = {
@@ -154,9 +155,10 @@ in
     discord
     xmonad-log
     dmenu # search util
-    xwallpaper
     jq
     slack
+    kubectl
+    unstable.xwallpaper
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {

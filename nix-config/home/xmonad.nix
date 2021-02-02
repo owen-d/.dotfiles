@@ -94,10 +94,10 @@
     , swn_fade    = 2
     }
   autostart = do
+    spawnOnce "xwallpaper --zoom ~/.dotfiles/nix-config/home/media/img/akira0.jpg &"
     return ()
     -- spawnOnce "xsetroot -cursor_name left_ptr &"
     -- spawnOnce "systemctl --user restart polybar &"
-    -- spawnOnce "xwallpaper --zoom /etc/nixos/nixos/config/wallpapers/horizon.jpg &"
     -- spawnOnce "notify-desktop -u low 'xmonad' 'started successfully'"
   dbusClient = do
       dbus <- D.connectSession
