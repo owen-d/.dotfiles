@@ -51,6 +51,7 @@ in
     enable = true;
     videoDrivers = [ "nvidia" ];
     windowManager.xmonad = {
+      config = (import "${dotuser}/xmonad.nix");
       enableContribAndExtras = true;
       extraPackages = hpkgs: with hpkgs; [ dbus monad-logger xmonad-contrib ];
       enable = true;
@@ -153,6 +154,8 @@ in
     steam
     discord
     xmonad-log
+    dmenu # search util
+    xwallpaper
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
