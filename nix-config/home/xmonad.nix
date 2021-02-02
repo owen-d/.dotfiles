@@ -53,7 +53,7 @@
   fontFamily = "xft:FantasqueSansMono Nerd Font:size=10:antialias=true:hinting=true"
   fontFamilyLarge = "xft:FantasqueSansMono Nerd Font:size=16:style=Bold:antialias=true:hinting=true"
   keybindings =
-    [ ("M-<Return>",                 spawn "alacritty")
+    [ ("M-S-<Return>",               spawn "alacritty")
     , ("M-q",                        kill)
     , ("M-S-r",                      spawn $ "xmonad --restart && systemctl --user restart polybar")
     ]
