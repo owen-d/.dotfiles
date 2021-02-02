@@ -144,6 +144,7 @@ in
     dmenu # search util
     xwallpaper
     jq
+    slack
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
