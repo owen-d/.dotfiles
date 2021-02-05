@@ -48,13 +48,15 @@
   -- mod key - use super (windows key)
   modkey = mod4Mask
 
-  -- 4 workspaces should be enough
-  ws = ["A","B","C","D"]
+  -- 2 workspaces should be enough -- not ready for more than my monitors
+  ws = ["A","B"]
   fontFamily = "xft:FantasqueSansMono Nerd Font:size=10:antialias=true:hinting=true"
   fontFamilyLarge = "xft:FantasqueSansMono Nerd Font:size=16:style=Bold:antialias=true:hinting=true"
   keybindings =
     [ ("M-S-<Return>",               spawn "alacritty")
     , ("M-q",                        kill)
+    , ("M-S-h",                      prevScreen)
+    , ("M-S-l",                      nextScreen)
     , ("M-S-r",                      spawn $ "xmonad --restart && systemctl --user restart polybar")
     ]
     ++
@@ -87,24 +89,34 @@
     , inactiveBorderWidth = 0
     , urgentBorderWidth   = 0
     }
+
   wnameTheme = def
     { swn_font    = fontFamilyLarge
     , swn_bgcolor = "#e95678"
     , swn_color   = "#16161c"
     , swn_fade    = 2
     }
+
+  -- if trying to figure out the correct className, run `xprop | grep WM_CLASS` then click the appropriate window
+  windowRules = composeAll
+    [ className =? "Google-chrome" --> doShift "B"
+    , className =? "Alacritty" --> doShift "A"
+    ]
+
   autostart = do
     spawnOnce "xwallpaper --zoom ~/.dotfiles/nix-config/home/media/img/akira0.jpg &"
     return ()
     -- spawnOnce "xsetroot -cursor_name left_ptr &"
     -- spawnOnce "systemctl --user restart polybar &"
     -- spawnOnce "notify-desktop -u low 'xmonad' 'started successfully'"
+
   dbusClient = do
       dbus <- D.connectSession
       D.requestName dbus (D.busName_ "org.xmonad.log") opts
       return dbus
     where
       opts = [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+
   dbusOutput dbus str =
     let
       opath  = D.objectPath_ "/org/xmonad/Log"
@@ -114,10 +126,12 @@
       body   = [D.toVariant $ UTF8.decodeString str]
     in
       D.emit dbus $ signal { D.signalBody = body }
+
   polybarHook dbus = dynamicLogWithPP $ xmobarPP
     { ppOutput = dbusOutput dbus
     , ppOrder  = \(_:l:_:_) -> [l]
     }
+
   main' dbus = xmonad . docks . ewmh $ def
     { focusFollowsMouse  = True
     , clickJustFocuses   = True
@@ -127,6 +141,7 @@
     , normalBorderColor  = "#2e303e"
     , focusedBorderColor = "#e95678"
     , layoutHook         = showWName' wnameTheme layouts
+    , manageHook         = windowRules
     , logHook            = polybarHook dbus
     , startupHook        = autostart
     }
