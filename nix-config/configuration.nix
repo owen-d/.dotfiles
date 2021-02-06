@@ -28,6 +28,12 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 20;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices = {
+    root = {
+      device = "/dev/disk/by-uuid/305b9f52-3b4a-49e1-acf8-1e64a3aa364e";
+      preLVM = true;
+    };
+  };
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -73,7 +79,6 @@ in
 
         lightdm = {
           enable = true;
-          background = "${dotuser}/home/media/img/neighborhood.jpg";
           greeters.gtk = {
             enable = true;
             iconTheme = {
@@ -200,7 +205,8 @@ in
     linking = lib.strings.concatStrings (lib.strings.intersperse "\n" [
       ''
         ln -sfn /etc/per-user/alacritty/alacritty.yml ~/.alacritty.yml
-        ln -sfn /etc/per-user/.gitconfig ~/.gitconfig
+        ln -sfn "${dots}/.tmux.conf ~/.tmux.conf"
+        ln -sfn "${dots}/.bashrc ~/.bashrc"
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
