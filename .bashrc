@@ -4,9 +4,7 @@ shopt -s expand_aliases
 
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/github_rsa"
 
-export PATH="${PATH}:${HOME}/.local/bin"
-
-source $HOME/.cargo/env
+pathappend "${HOME}/.local/bin" "${HOME}/.cargo/bin"
 
 export GPG_TTY=$(tty)
 

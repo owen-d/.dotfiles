@@ -43,10 +43,15 @@ mem() {
     ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
 }
 
-gwd() {
-    cd ${GOPATH}/src/github.com/owen-d
-}
-
 jsonnet-lint() {
     git diff --name-only | grep -E '(jsonnet|libsonnet)' | xargs -n 1 jsonnetfmt -i
+}
+
+pathappend() {
+    for ARG in "$@"
+    do
+        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+            PATH="${PATH:+"$PATH:"}$ARG"
+        fi
+    done
 }
