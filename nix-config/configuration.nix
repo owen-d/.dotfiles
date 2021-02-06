@@ -188,6 +188,10 @@ in
     rustup
     go_1_15
     bash-completion
+    gcc
+    pkg-config
+    zlib
+    openssl
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
@@ -206,6 +210,7 @@ in
           (lib.generators.toYAML {} (import "${dotuser}/alacritty.nix"));
     } [
     (import "${dotuser}/gitconfig.nix").files
+    (import "${dotuser}/cargo.nix").files
   ];
 
   system.userActivationScripts = {
@@ -216,6 +221,7 @@ in
         ln -sfn "${dots}/.bashrc" ~/.bashrc
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
+      (import "${dotuser}/cargo.nix").linking.text
     ]);
 
   };
