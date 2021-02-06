@@ -104,7 +104,7 @@
     ]
 
   autostart = do
-    spawnOnce "xwallpaper --zoom ~/.dotfiles/nix-config/home/media/img/akira0.jpg &"
+    spawnOnce "xwallpaper --zoom ~/.dotfiles/nix-config/home/media/img/neighborhood.jpg &"
     spawnOnce "systemctl --user restart polybar &"
     -- spawnOnce "xsetroot -cursor_name left_ptr &"
     -- spawnOnce "notify-desktop -u low 'xmonad' 'started successfully'"
