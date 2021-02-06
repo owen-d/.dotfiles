@@ -186,9 +186,14 @@ in
     ripgrep
     cargo
     rustup
+    go_1_15
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
+      "per-user/paths".text = ''
+        export GOROOT=${pkgs.go_1_15}/share/go
+      '';
+
       "per-user/alacritty/alacritty.yml".text =
         # This is some hacky stuff :/
         # Basically the "\x1bx" is the (M-x) keyset but it gets ripped out
@@ -211,6 +216,7 @@ in
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
+
   };
 
   # Some programs need SUID wrappers, can be configured further or are
