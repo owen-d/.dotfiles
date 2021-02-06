@@ -192,6 +192,7 @@ in
     pkg-config
     zlib
     openssl
+    cargo-edit
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
