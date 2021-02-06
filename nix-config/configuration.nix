@@ -187,6 +187,7 @@ in
     cargo
     rustup
     go_1_15
+    bash-completion
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
