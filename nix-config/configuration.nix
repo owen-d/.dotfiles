@@ -10,11 +10,17 @@ let
   nixdots = "${dots}/nix-config";
   dotuser = "${nixdots}/home";
   programs = "${dotuser}/programs";
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/nix-community/home-manager.git";
+    rev = "91bd34620d73340be03642279ee0d1c64110ee6c";
+    ref = "release-20.09";
+  };
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import "${home-manager}/nixos")
       "${programs}/emacs.nix"
     ];
 
@@ -50,78 +56,88 @@ in
   # };
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "nvidia" ];
-    windowManager.xmonad = {
-      config = (import "${dotuser}/xmonad.nix");
-      enableContribAndExtras = true;
-      extraPackages = hpkgs: with hpkgs; [ dbus monad-logger xmonad-contrib ];
+  services = {
+
+    xserver = {
       enable = true;
-    };
-    displayManager = {
-      # ssdm.enable = true;
-      # plasma5.enable = true;
-      lightdm = {
+      videoDrivers = [ "nvidia" ];
+      windowManager.xmonad = {
+        config = (import "${dotuser}/xmonad.nix");
+        enableContribAndExtras = true;
+        extraPackages = hpkgs: with hpkgs; [ dbus monad-logger xmonad-contrib ];
         enable = true;
-        background = "${dotuser}/home/media/img/akira0.jpg";
-        greeters.gtk = {
-          enable = true;
-          iconTheme = {
-            name = "Papirus";
-            package = pkgs.papirus-icon-theme;
-          };
-          # theme = {
-          #   name = "fortuneteller2k_phocus";
-          #   package = pkgs.phocus;
-          # };
-        };
       };
-      defaultSession = "none+xmonad";
+
+      displayManager = {
+
+        lightdm = {
+          enable = true;
+          background = "${dotuser}/home/media/img/akira0.jpg";
+          greeters.gtk = {
+            enable = true;
+            iconTheme = {
+              name = "Papirus";
+              package = pkgs.papirus-icon-theme;
+            };
+            # theme = {
+            #   name = "fortuneteller2k_phocus";
+            #   package = pkgs.phocus;
+            # };
+          };
+        };
+        defaultSession = "none+xmonad";
+      };
     };
   };
 
+  home-manager = {
+    useGlobalPkgs = true;
+    users.owen = { pkgs, ... }: {
+      xresources.extraConfig = (import "${dotuser}/xresources.nix");
+      services.polybar = {
+        enable = true;
+        # pulseSupport = true;
+        script = "polybar main &";
+        config = (import "${programs}/polybar.nix");
+      };
+    };
+
+  };
 
   # Should be removable in the future
   # https://github.com/NixOS/nixpkgs/pull/86480/files
   hardware.opengl.driSupport32Bit = true;
 
-  systemd.user.services."xcape" = {
-    enable = true;
-    description = "xcape to use CTRL as ESC when pressed alone";
-    wantedBy = [ "default.target" ];
-    serviceConfig.Type = "forking";
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStartPre = "${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:nocaps -option caps:ctrl_modifier";
-    serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape -e Control_L=Escape";
-  };
+  systemd.user = {
+    services = {
+      "xcape" = {
+        enable = true;
+        description = "xcape to use CTRL as ESC when pressed alone";
+        wantedBy = [ "default.target" ];
+        serviceConfig.Type = "forking";
+        serviceConfig.Restart = "always";
+        serviceConfig.RestartSec = 2;
+        serviceConfig.ExecStartPre = "${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:nocaps -option caps:ctrl_modifier";
+        serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape -e Control_L=Escape";
+      };
 
-  # random svc for init stuff I need
-  systemd.user.services."x-user-init" = {
-    description = "random x configs";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    script = ''
+      # random svc for init stuff I need
+      "x-user-init" = {
+        description = "random x configs";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        script = ''
       ${pkgs.xlibs.xset}/bin/xset r rate 185 50
       ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0
       ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0
     '';
+      };
+    };
   };
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.owen = {
