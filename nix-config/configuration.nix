@@ -193,6 +193,7 @@ in
     zlib
     openssl
     cargo-edit
+    gopls
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
