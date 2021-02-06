@@ -73,7 +73,7 @@ in
 
         lightdm = {
           enable = true;
-          background = "${dotuser}/home/media/img/akira0.jpg";
+          background = "${dotuser}/home/media/img/neighborhood.jpg";
           greeters.gtk = {
             enable = true;
             iconTheme = {
