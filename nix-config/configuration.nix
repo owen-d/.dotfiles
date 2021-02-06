@@ -9,11 +9,13 @@ let
   dots =  "/home/owen/.dotfiles";
   nixdots = "${dots}/nix-config";
   dotuser = "${nixdots}/home";
+  programs = "${dotuser}/programs";
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      "${programs}/emacs.nix"
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -133,7 +135,6 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    emacs
     git
     google-chrome
     vlc
@@ -159,6 +160,9 @@ in
     slack
     kubectl
     unstable.xwallpaper
+    ripgrep
+    cargo
+    rustup
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
