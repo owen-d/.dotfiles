@@ -99,6 +99,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     users.owen = { pkgs, ... }: {
+
       xresources.extraConfig = (import "${dotuser}/xresources.nix");
       services.polybar = {
         enable = true;
@@ -205,8 +206,8 @@ in
     linking = lib.strings.concatStrings (lib.strings.intersperse "\n" [
       ''
         ln -sfn /etc/per-user/alacritty/alacritty.yml ~/.alacritty.yml
-        ln -sfn "${dots}/.tmux.conf ~/.tmux.conf"
-        ln -sfn "${dots}/.bashrc ~/.bashrc"
+        ln -sfn "${dots}/.tmux.conf" ~/.tmux.conf
+        ln -sfn "${dots}/.bashrc" ~/.bashrc
       ''
       (import "${dotuser}/gitconfig.nix").linking.text
     ]);
