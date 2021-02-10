@@ -1,4 +1,0 @@
-# gimme -- since it uses subshells, can't put it in bashrc as it'd continue to fork itself
-which gimme &> /dev/null && . <(gimme 1.15) &> /dev/null
-
-. ~/.bashrc
