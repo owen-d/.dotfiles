@@ -49,7 +49,7 @@
   modkey = mod4Mask
 
   -- 2 workspaces should be enough -- not ready for more than my monitors
-  ws = ["A","B"]
+  ws = ["A","B", "C"]
   fontFamily = "xft:FantasqueSansMono Nerd Font:size=10:antialias=true:hinting=true"
   fontFamilyLarge = "xft:FantasqueSansMono Nerd Font:size=16:style=Bold:antialias=true:hinting=true"
   keybindings =
