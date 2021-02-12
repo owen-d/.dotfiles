@@ -194,6 +194,8 @@ in
     openssl
     cargo-edit
     gopls
+    git-crypt
+    gnupg
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
