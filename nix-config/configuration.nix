@@ -77,6 +77,14 @@ in
 
       displayManager = {
 
+        sessionCommands = ''
+          ${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:nocaps -option caps:ctrl_modifier
+          ${pkgs.xcape}/bin/xcape -e Control_L=Escape
+          ${pkgs.xlibs.xset}/bin/xset r rate 185 50
+          ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0
+          ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0
+        '';
+
         lightdm = {
           enable = true;
           greeters.gtk = {
@@ -114,33 +122,6 @@ in
   # Should be removable in the future
   # https://github.com/NixOS/nixpkgs/pull/86480/files
   hardware.opengl.driSupport32Bit = true;
-
-  systemd.user = {
-    services = {
-      "xcape" = {
-        enable = true;
-        description = "xcape to use CTRL as ESC when pressed alone";
-        wantedBy = [ "default.target" ];
-        serviceConfig.Type = "forking";
-        serviceConfig.Restart = "always";
-        serviceConfig.RestartSec = 2;
-        serviceConfig.ExecStartPre = "${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:nocaps -option caps:ctrl_modifier";
-        serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape -e Control_L=Escape";
-      };
-
-      # random svc for init stuff I need
-      "x-user-init" = {
-        description = "random x configs";
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        script = ''
-      ${pkgs.xlibs.xset}/bin/xset r rate 185 50
-      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0
-      ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0
-    '';
-      };
-    };
-  };
 
   # Enable sound.
   sound.enable = true;
