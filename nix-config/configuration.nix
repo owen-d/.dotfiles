@@ -196,6 +196,9 @@ in
     gopls
     git-crypt
     gnupg
+    google-cloud-sdk
+    awscli2
+    azure-cli
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
