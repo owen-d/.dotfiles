@@ -11,6 +11,6 @@ pathappend "${HOME}/.local/bin" "${HOME}/.cargo/bin"
 export GPG_TTY=$(tty)
 
 source <(kubectl completion bash)
-complete -F __start_kubectl kc
+complete -F __start_kubectl kc 2>/dev/null
 
 [ -f /etc/per-user/paths ] && . /etc/per-user/paths
