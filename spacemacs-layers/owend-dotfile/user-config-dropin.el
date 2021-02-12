@@ -17,6 +17,7 @@
 ;; load bashrc (which in turn expands aliases)
 (setq interprogram-cut-function 'copy-to-osx)
 (setq shell-file-name "bash")
+(setenv "BASH_ENV" "~/.dotfiles/.bashrc")
 
 ;; append custom themes
 (setq dotspacemacs-themes (cons 'zerodark
