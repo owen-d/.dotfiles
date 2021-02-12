@@ -12,6 +12,8 @@
               hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
       [init]
               templatedir = ~/.git-templates
+      [pull]
+              ff = only
       # [commit]
       #         gpgsign = true
       [url "git@github.com:"]
