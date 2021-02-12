@@ -62,6 +62,8 @@ in
   #   keyMap = "us";
   # };
 
+  virtualisation.docker.enable = true;
+
   # Enable the Plasma 5 Desktop Environment.
   services = {
 
@@ -130,7 +132,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.owen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
   security.sudo.wheelNeedsPassword = false;
