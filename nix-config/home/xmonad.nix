@@ -101,7 +101,6 @@
   windowRules = composeAll
     [ className =? "Google-chrome" --> doShift "B"
     , className =? "Alacritty" --> doShift "A"
-    , className =? "Wine" --> doShift "B"
     ]
 
   autostart = do
