@@ -142,6 +142,7 @@
     , layoutHook         = showWName' wnameTheme layouts
     , manageHook         = windowRules
     , logHook            = polybarHook dbus
+    , handleEventHook    = fullscreenEventHook
     , startupHook        = autostart
     }
     `additionalKeysP` keybindings
