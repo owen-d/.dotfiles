@@ -183,6 +183,7 @@ in
     awscli2
     azure-cli
     golangci-lint
+    lutris
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
