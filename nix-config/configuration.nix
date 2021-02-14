@@ -182,6 +182,7 @@ in
     google-cloud-sdk
     awscli2
     azure-cli
+    golangci-lint
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
