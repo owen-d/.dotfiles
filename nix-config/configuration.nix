@@ -184,6 +184,7 @@ in
     azure-cli
     golangci-lint
     lutris
+    graphviz
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
