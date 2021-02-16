@@ -58,6 +58,7 @@
     , ("M-S-h",                      prevScreen)
     , ("M-S-l",                      nextScreen)
     , ("M-S-r",                      spawn $ "xmonad --restart && systemctl --user restart polybar")
+    , ("M-S-C-4",                    spawn $ "gnome-screenshot -a -f /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png")
     ]
     ++
     [ (otherModMasks ++ "M-" ++ key, action tag)

@@ -185,6 +185,7 @@ in
     golangci-lint
     lutris
     graphviz
+    gnome3.gnome-screenshot
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
