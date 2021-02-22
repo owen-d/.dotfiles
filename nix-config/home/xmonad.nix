@@ -5,6 +5,7 @@
   import XMonad
 
   import XMonad.Actions.CycleWS
+  import XMonad.Actions.GridSelect
 
   import XMonad.Hooks.DynamicLog
   import XMonad.Hooks.EwmhDesktops
@@ -55,6 +56,7 @@
   keybindings =
     [ ("M-S-<Return>",               spawn "alacritty")
     , ("M-q",                        kill)
+    , ("M-o",                        goToSelected defaultGSConfig)
     , ("M-S-h",                      prevScreen)
     , ("M-S-l",                      nextScreen)
     , ("M-S-r",                      spawn $ "xmonad --restart && systemctl --user restart polybar")
