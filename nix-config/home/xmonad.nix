@@ -32,6 +32,10 @@
   import XMonad.Util.EZConfig
   import XMonad.Util.Run
   import XMonad.Util.SpawnOnce
+  import XMonad.Util.Paste (sendKey)
+
+  import Graphics.X11.Types
+  import Graphics.X11.ExtraTypes.XF86
 
   import Data.Char
   import Data.Monoid
@@ -56,18 +60,35 @@
   keybindings =
     [ ("M-S-<Return>",               spawn "alacritty")
     , ("M-q",                        kill)
-    , ("M-o",                        goToSelected defaultGSConfig)
+    , ("M-c",                        clipboardCopy)
+    , ("M-v",                        clipboardPaste)
+    , ("M-o",                        goToSelected def) -- shows open windows in grid
     , ("M-S-h",                      prevScreen)
     , ("M-S-l",                      nextScreen)
     , ("M-S-r",                      spawn $ "xmonad --restart && systemctl --user restart polybar")
     , ("M-S-C-4",                    spawn $ "gnome-screenshot -a -f /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png")
     ]
-    ++
-    [ (otherModMasks ++ "M-" ++ key, action tag)
-        | (tag, key) <- zip ws (map (\x -> show x) ([1..9] ++ [0]))
-        , (otherModMasks, action) <- [ ("", windows . W.greedyView)
-                                     , ("S-", windows . W.shift)]
-    ]
+    where
+      clipboardCopy :: X ()
+      clipboardCopy =
+        withFocused $ \w -> do
+          b <- isTerminal w
+          if b
+            then (sendKey noModMask xF86XK_Copy)
+            else (sendKey controlMask xK_c)
+
+      clipboardPaste :: X ()
+      clipboardPaste =
+        withFocused $ \w -> do
+          b <- isTerminal w
+          if b
+            then (sendKey noModMask xF86XK_Paste)
+            else (sendKey controlMask xK_v)
+
+      isTerminal :: Window -> X Bool
+      isTerminal =
+        fmap (== "Alacritty") . runQuery className
+
 
   layouts = avoidStruts $ tiled ||| mtiled ||| tabs ||| centeredMaster ||| grid
     where
