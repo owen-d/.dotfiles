@@ -77,14 +77,14 @@ in
         enable = true;
       };
 
+      xrandrHeads = [ "DP-0" "HDMI-0" ];
+
       displayManager = {
 
         sessionCommands = ''
           ${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:nocaps -option caps:ctrl_modifier
           ${pkgs.xcape}/bin/xcape -e Control_L=Escape
           ${pkgs.xlibs.xset}/bin/xset r rate 185 50
-          ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --pos 0x0
-          ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-4 --pos 3440x0
         '';
 
         lightdm = {
