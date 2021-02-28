@@ -186,6 +186,9 @@ in
     lutris
     graphviz
     gnome3.gnome-screenshot
+    transmission
+    stig # transmission tui
+    tree
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
