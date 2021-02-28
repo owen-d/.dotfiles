@@ -48,6 +48,7 @@
   import qualified Codec.Binary.UTF8.String as UTF8
   import qualified XMonad.StackSet          as W
   import qualified Data.Map                 as M
+  import qualified XMonad.StackSet as W
 
 
   -- mod key - use super (windows key)
@@ -125,7 +126,13 @@
   windowRules = composeAll
     [ className =? "Google-chrome" --> doShift "B"
     , className =? "Alacritty" --> doShift "A"
+    , className =? "wowclassic.exe" --> doFullFloat'
+    , className =? "Wine" --> doFullFloat'
     ]
+    where
+      doMaster = doF W.shiftMaster --append this to all floats so new windows always go on top, regardless of the current focus
+      doFloat' = doFloat <+> doMaster
+      doFullFloat' = doFullFloat <+> doMaster
 
   autostart = do
     spawnOnce "xwallpaper --zoom ~/.dotfiles/nix-config/home/media/img/neighborhood.jpg &"
