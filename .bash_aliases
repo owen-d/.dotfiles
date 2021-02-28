@@ -55,3 +55,7 @@ pathappend() {
         fi
     done
 }
+
+winekill() {
+    ps aux | egrep 'wine(server|device|)' | grep -v grep | awk '{print $2}' | xargs -n 1 kill -9
+}
