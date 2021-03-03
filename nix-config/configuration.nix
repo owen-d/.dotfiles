@@ -77,6 +77,13 @@ in
         enable = true;
       };
 
+      serverFlagsSection = ''
+        Option "BlankTime" "0"
+        Option "StandbyTime" "0"
+        Option "SuspendTime" "0"
+        Option "OffTime" "0"
+      '';
+
       xrandrHeads = [ "DP-0" "HDMI-0" ];
 
       displayManager = {
@@ -88,6 +95,7 @@ in
         '';
 
         lightdm = {
+          background = "${dotuser}/media/img/sunset.jpg";
           enable = true;
           greeters.gtk = {
             enable = true;
@@ -208,6 +216,7 @@ in
     } [
     (import "${dotuser}/gitconfig.nix").files
     (import "${dotuser}/cargo.nix").files
+    (import "${dotuser}/kube-ps1.nix").files
   ];
 
   system.userActivationScripts = {

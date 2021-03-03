@@ -13,8 +13,11 @@ export GPG_TTY=$(tty)
 case "$-" in
     # only runs for interactive shells
     *i*)
+        . /etc/per-user/kube-ps1.sh
+        export PS1='\W $(kube_ps1) $ '
         source <(kubectl completion bash 2>/dev/null)
-        complete -F __start_kubectl kc 2>/dev/null ;;
+        complete -F __start_kubectl kc 2>/dev/null
+        ;;
 esac
 
 [ -f /etc/per-user/paths ] && . /etc/per-user/paths
