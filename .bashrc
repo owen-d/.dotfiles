@@ -6,7 +6,9 @@ export EDITOR=vim
 
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/github_rsa"
 
-pathappend "${HOME}/.local/bin" "${HOME}/.cargo/bin"
+export GOBIN="${HOME}/.local/go/bin"
+
+pathappend "${HOME}/.local/bin" "${HOME}/.cargo/bin" "${GOBIN}"
 
 export GPG_TTY=$(tty)
 
