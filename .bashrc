@@ -23,3 +23,4 @@ case "$-" in
 esac
 
 [ -f /etc/per-user/paths ] && . /etc/per-user/paths
+[ -f ~/.keys.sh ] && . ~/.keys.sh
