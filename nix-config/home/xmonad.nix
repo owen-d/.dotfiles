@@ -127,6 +127,7 @@
     [ className =? "Google-chrome" --> doShift "B"
     , className =? "Alacritty" --> doShift "A"
     , className =? "wowclassic.exe" --> doFullFloat'
+    , className =? "wow.exe" --> doFullFloat'
     , className =? "mtga.exe" --> doFullFloat'
     , className =? "Wine" --> doFullFloat'
     ]
