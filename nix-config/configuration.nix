@@ -197,6 +197,8 @@ in
     transmission
     stig # transmission tui
     tree
+    discord
+    jsonnet
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
