@@ -59,3 +59,9 @@ pathappend() {
 winekill() {
     ps aux | egrep 'wine(server|device|)' | grep -v grep | awk '{print $2}' | xargs -n 1 kill -9
 }
+
+
+oom-finder() {
+    # usage: oom-finder <namespace> <name-label>
+    kc -n "${1:-default}" get pod -l name="${2}" -o json | jq '.items[] | select(.status.containerStatuses[].lastState.terminated.reason == "OOMKilled")' | jq '.metadata.name'
+}
