@@ -190,7 +190,6 @@ in
     google-cloud-sdk
     awscli2
     azure-cli
-    golangci-lint
     lutris
     graphviz
     gnome3.gnome-screenshot
