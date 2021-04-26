@@ -202,7 +202,7 @@ in
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
       "per-user/paths".text = ''
-        export GOROOT=${pkgs.go_1_15}/share/go
+        export GOROOT=${pkgs.go_1_16}/share/go
       '';
 
       "per-user/alacritty/alacritty.yml".text =
