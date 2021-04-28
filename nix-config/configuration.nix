@@ -22,6 +22,7 @@ in
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
       "${programs}/emacs.nix"
+      "${programs}/go.nix"
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -177,7 +178,6 @@ in
     ripgrep
     cargo
     rustup
-    go_1_16
     bash-completion
     gcc
     pkg-config
