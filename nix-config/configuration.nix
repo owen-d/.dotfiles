@@ -201,10 +201,6 @@ in
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
-      "per-user/paths".text = ''
-        export GOROOT=${pkgs.go_1_16}/share/go
-      '';
-
       "per-user/alacritty/alacritty.yml".text =
         # This is some hacky stuff :/
         # Basically the "\x1bx" is the (M-x) keyset but it gets ripped out
