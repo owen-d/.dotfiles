@@ -2,6 +2,9 @@ shopt -s expand_aliases
 
 . ~/.dotfiles/.bash_aliases
 
+export HISTSIZE=20000
+export HISTFILESIZE=20000
+
 export EDITOR=vim
 
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/github_rsa"
