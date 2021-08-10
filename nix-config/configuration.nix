@@ -198,6 +198,7 @@ in
     tree
     discord
     jsonnet
+    unstable.gh
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
