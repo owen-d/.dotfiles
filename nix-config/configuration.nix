@@ -199,6 +199,7 @@ in
     discord
     jsonnet
     unstable.gh
+    shfmt
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
