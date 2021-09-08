@@ -128,6 +128,7 @@
     , className =? "Alacritty" --> doShift "A"
     , className =? "wowclassic.exe" --> doFullFloat'
     , className =? "wow.exe" --> doFullFloat'
+    , className =? "dota2" --> doFullFloat'
     , className =? "mtga.exe" --> doFullFloat'
     , className =? "Wine" --> doFullFloat'
     ]

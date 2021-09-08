@@ -3,7 +3,7 @@
                                       html
                                       csv
                                       yaml
-                                      git
+                                      ;; git
                                       ;; themes-megapack
                                       (rust :variables
                                             rust-format-on-save t)
