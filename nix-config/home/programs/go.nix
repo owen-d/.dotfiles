@@ -1,12 +1,15 @@
 { config, pkgs, lib, ... }:
 
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 with lib;
 {
   environment.systemPackages = with pkgs; [
     stdenv
     systemd
     glibc.static
-    go_1_16
+    unstable.go_1_17
   ];
 
   environment.variables = {
