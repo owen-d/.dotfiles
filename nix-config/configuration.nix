@@ -166,13 +166,12 @@ in
     gcc
     binutils
     clang
-    slack
+    unstable.slack
     steam
     discord
     xmonad-log
     dmenu # search util
     jq
-    slack
     kubectl
     unstable.xwallpaper
     ripgrep
