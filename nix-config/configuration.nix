@@ -172,7 +172,7 @@ in
     xmonad-log
     dmenu # search util
     jq
-    kubectl
+    unstable.kubectl
     unstable.xwallpaper
     ripgrep
     cargo
