@@ -91,7 +91,7 @@
         fmap (== "Alacritty") . runQuery className
 
 
-  layouts = avoidStruts $ tiled ||| mtiled ||| tabs ||| centeredMaster ||| grid
+  layouts = avoidStruts $ tabs ||| mtiled ||| tiled ||| centeredMaster ||| grid
     where
        tiled = stripName 2 0 $ gaps 4 4 $ draggingVisualizer $ toggleLayouts maximized (smartBorders (Tall 1 (3/100) (1/2)))
        mtiled = stripName 2 0 $ gaps 4 4 $ draggingVisualizer $ Mirror (toggleLayouts maximized (smartBorders (Tall 1 (3/100) (1/2))))
@@ -140,6 +140,9 @@
   autostart = do
     spawnOnce "xwallpaper --zoom ~/.dotfiles/nix-config/home/media/img/neighborhood.jpg &"
     spawnOnce "systemctl --user restart polybar &"
+    spawnOnce "alacritty -e tmux"
+    spawnOnce "slack"
+    spawnOnce "google-chrome-stable"
     -- spawnOnce "xsetroot -cursor_name left_ptr &"
     -- spawnOnce "notify-desktop -u low 'xmonad' 'started successfully'"
 
