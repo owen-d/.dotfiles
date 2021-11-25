@@ -175,8 +175,7 @@ in
     unstable.kubectl
     unstable.xwallpaper
     ripgrep
-    cargo
-    rustup
+    unstable.rustup
     bash-completion
     gcc
     pkg-config
