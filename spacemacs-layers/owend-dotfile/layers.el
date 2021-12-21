@@ -34,8 +34,8 @@
                                            ;; ;; should be auto enabled
                                            ;; lsp-ui-flycheck-enable t
                                            lsp-ui-doc-enable nil
-                                           lsp-rust-server 'rls
-                                           ;; lsp-rust-server 'rust-analyzer
+                                           ;; lsp-rust-server 'rls
+                                           lsp-rust-server 'rust-analyzer
                                            )
                                       terraform
                                       ))
