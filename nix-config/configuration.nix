@@ -158,7 +158,7 @@ in
     k9s
     vim
     git
-    google-chrome
+    unstable.google-chrome
     vlc
     curl
     wget
