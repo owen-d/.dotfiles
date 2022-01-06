@@ -23,6 +23,7 @@ in
       (import "${home-manager}/nixos")
       "${programs}/emacs.nix"
       "${programs}/go.nix"
+      "${programs}/vscode.nix"
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -62,6 +63,11 @@ in
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
+
+  nix.package = unstable.nixFlakes;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   virtualisation.docker.enable = true;
 
@@ -149,6 +155,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    k9s
     vim
     git
     google-chrome
