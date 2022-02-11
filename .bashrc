@@ -15,6 +15,8 @@ pathappend "${HOME}/.local/bin" "${HOME}/.cargo/bin" "${GOBIN}"
 
 export GPG_TTY=$(tty)
 
+export NIXPKGS_ALLOW_UNFREE=1
+
 case "$-" in
     # only runs for interactive shells
     *i*)

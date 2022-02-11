@@ -11,6 +11,7 @@ with lib;
     systemd
     glibc.static
     go
+    gcc
   ];
 
   environment.variables = {

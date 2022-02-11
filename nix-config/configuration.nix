@@ -23,7 +23,6 @@ in
       (import "${home-manager}/nixos")
       "${programs}/emacs.nix"
       "${programs}/go.nix"
-      "${programs}/vscode.nix"
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -205,6 +204,8 @@ in
     jsonnet
     unstable.gh
     shfmt
+    shellcheck
+    unstable.rnix-lsp
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {

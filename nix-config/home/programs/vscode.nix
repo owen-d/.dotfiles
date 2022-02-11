@@ -5,6 +5,7 @@
 
 # Extensions metadata can be created via the process specified in
 # ./load-vscode-extensions.sh
+# Unused, but here in case I figure it out in the future.
 
 let
   extensions = (with pkgs.vscode-extensions; [
