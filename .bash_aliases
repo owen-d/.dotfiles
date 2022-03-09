@@ -65,3 +65,15 @@ oom-finder() {
     # usage: oom-finder <namespace> <name-label>
     kc -n "${1}" get pod -l name="${2}" -o json | jq '.items[] | select(.status.containerStatuses[].lastState.terminated.reason == "OOMKilled")' | jq '.metadata.name'
 }
+
+nix-clean () {
+    nix-env --delete-generations old
+    nix-store --gc
+    nix-channel --update
+    nix-env -u --always
+    for link in /nix/var/nix/gcroots/auto/*
+    do
+        rm $(readlink "$link")
+    done
+    nix-collect-garbage -d
+}

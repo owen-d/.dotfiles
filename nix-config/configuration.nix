@@ -174,7 +174,6 @@ in
     clang
     unstable.slack
     steam
-    discord
     xmonad-log
     dmenu # search util
     jq
@@ -188,7 +187,7 @@ in
     zlib
     openssl
     cargo-edit
-    gopls
+    unstable.gopls
     git-crypt
     gnupg
     google-cloud-sdk
@@ -200,7 +199,7 @@ in
     transmission
     stig # transmission tui
     tree
-    discord
+    unstable.discord
     jsonnet
     unstable.gh
     shfmt
