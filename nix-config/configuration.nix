@@ -205,6 +205,8 @@ in
     shfmt
     shellcheck
     unstable.rnix-lsp
+    unstable.delve
+    xbanish
   ];
 
   environment.etc = builtins.foldl' lib.trivial.mergeAttrs {
@@ -243,6 +245,16 @@ in
     enable = true;
     enableSSHSupport = true;
     pinentryFlavor = "tty";
+  };
+
+  systemd.user.services."xbanish" = {
+    enable = true;
+    description = "Hide cursor when typing";
+    wantedBy = [ "default.target" ];
+    serviceConfig.Type = "forking";
+    serviceConfig.Restart = "on-failure";
+    serviceConfig.RestartSec = 2;
+    serviceConfig.ExecStart = "${pkgs.xbanish}/bin/xbanish";
   };
 
   # List services that you want to enable:
